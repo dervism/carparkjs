@@ -1,6 +1,10 @@
 # CarParkJS
 
-Example Node project (JavaScript 2018) with classes and Jest-tests.
+Example NodeJS/JavaScript (ES2018) project with classes and Jest-tests.
+
+Requirments:
+
+- Node / NPM (v. 10 or newer)
 
 Setup:
 
