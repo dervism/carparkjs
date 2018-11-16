@@ -1,15 +1,7 @@
-#skip-link {
-    left: -10000px;
-    top: auto;
-    position:absolute;
-    width:1px;
-    height:1px;
-    overflow:hidden;
-}
-#skip-link:focus, #skip-link:active, #skip-link:hover {
-    left: 0;
-    top: 0;
-    width: auto;
-    height: auto;
-    overflow: visible;
+#parkedCarsContainer {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 300px;
 }

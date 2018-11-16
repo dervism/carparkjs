@@ -22,7 +22,7 @@ function makeCarList() {
 
     getCars().then(cars => {
         if (cars.length > 0) {
-            cars.forEach(car => {
+            cars.reverse().forEach(car => {
                 element.appendChild( createCar(car) )
             });
         } else {

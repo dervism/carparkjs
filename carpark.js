@@ -24,5 +24,5 @@ app.get('/parkedCars', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`App listening on port ${port}!`)
+    console.log(`App started on port ${port}!`)
 });
