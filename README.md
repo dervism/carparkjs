@@ -1,6 +1,6 @@
 # CarParkJS
 
-Example JavaScript/Node project with classes and Jest-tests.
+Example Node project (JavaScript 2018) with classes and Jest-tests.
 
 Setup:
 
@@ -27,3 +27,7 @@ The application is tested with Jest:
 ```
 $ npm test
 ```
+
+Screenshot:
+
+![Screenshot](app.png)

@@ -7,6 +7,17 @@ class ParkingHouse {
         this.parkingSlots = [];
     }
 
+    allCars() {
+        return this.parkingSlots.map(slot => {
+            return {
+                ticket: slot.ticket,
+                car: slot.car,
+                timeSpent: slot.ticket.timeSpent(),
+                cost: ParkingHouse.calculateCost(slot.ticket)
+            };
+        });
+    }
+
     parkCar(car) {
         if (this.space === 0)
             throw new Error("No more space left in this parking house.");

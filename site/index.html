@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>CarParkJS</title>
+        <link rel="stylesheet" href="bootstrap.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <a id="skip-link" href="#content">Skip to main content</a>
+
+        <header class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">CarParkJS</h1>
+                <p class="lead">An example parking house registry app</p>
+            </div>
+        </header>
+
+        <main id="content" class="container" tabindex="0">
+            <section id="addCar">
+                <div id="addCarForm">
+
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <input class="form-control form-control-lg" type="text" id="licenseNr"
+                                   name="licenseNr" placeholder="Enter license number or leave empty to auto-generate." />
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <select class="custom-select custom-select-lg mb-3" name="type" id="type">
+                                <option value="car">Car</option>
+                                <option value="truck">Truck</option>
+                                <option value="bike">Bike</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-sm-8">
+                            <button id="addCarBtn" class="btn btn-primary btn-block">Add</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <hr />
+            <section class="row">
+                <h2 class="mt-4">Parked vehicles:</h2>
+            </section>
+            <section id="parkedCarsContainer" class="row">
+                <section id="parkedCars" class="col-12"></section>
+            </section>
+        </main>
+        <script src="scripts.js" type="text/javascript"></script>
+    </body>
+</html>
