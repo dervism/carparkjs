@@ -4,7 +4,6 @@
   "description": "Car Park Example",
   "main": "main.js",
   "scripts": {
-    "start-web": "http-server -p 4000 site",
     "start-cli": "node main.js",
     "start-server": "node carpark",
     "test": "jest --coverage",
