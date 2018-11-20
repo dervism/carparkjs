@@ -7,7 +7,7 @@ Example NodeJS/JavaScript (ES2018) project with classes and Jest-tests.
 - Node / NPM (v. 10 or newer)
 - Git
 
-### Setup:
+### noSetup:
 
 ```
 $ git checkout https://github.com/dervism/carparkjs.git

@@ -6,17 +6,22 @@
   "scripts": {
     "start-web": "http-server -p 4000 site",
     "start-cli": "node main.js",
+    "start-server": "node carpark",
     "test": "jest --coverage",
-    "watch": "jest --watchAll --coverage"
+    "watch": "jest --watchAll --coverage",
+    "uu": "start-server-and-test start-server http://localhost:3000 uu-test",
+    "uu-test": "nav-ally -f ./src/test/carpark/carpark.yml"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "http-server": "0.11.1"
+    "http-server": "0.11.1",
+    "nav-ally": "^1.0.2"
   },
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "start-server-and-test": "^1.7.10"
   }
 }
