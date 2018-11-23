@@ -1,13 +1,11 @@
 # CarParkJS
 
-Example NodeJS/JavaScript (ES2018) project with classes and Jest-tests.
+Example NodeJS/JavaScript (ES2018) project with classes and Jest-tests. The frontend is written in pure JavaScript.
 
 ### Requirments:
 
 - Node / NPM (v. 10 or newer)
 - Git
-
-The front-end is written in pure JA
 
 ### Setup:
 
