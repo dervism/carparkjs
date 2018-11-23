@@ -10,15 +10,27 @@ function handleForm() {
             method: 'post',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({licenseNr, type})
-        }).then(result => {
-                makeCarList();
-            });
+        })
+        .then(result => {
+            return result.json();
+        })
+        .then(car => {
+            addToCarList(car);
+        });
     });
 }
 
+function addToCarList(car) {
+    console.log(car);
+    let carlist = createCarList();
+    removeNoCarsItem();
+
+    if (carlist.childNodes.length > 0) carlist.insertBefore(createCar(car), carlist.childNodes[0]);
+    else carlist.appendChild(createCar(car));
+}
+
 function makeCarList() {
-    let element = document.createElement("ol");
-    element.className = "list-group list-group-flush";
+    let element = createCarList();
 
     getCars().then(cars => {
         if (cars.length > 0) {
@@ -27,15 +39,36 @@ function makeCarList() {
             });
         } else {
             element = document.createElement("div");
-            const carElement = document.createElement("h5");
-            carElement.innerText = "No cars are parked.";
-            element.appendChild(carElement);
+            const noCarsElement = document.createElement("h5");
+            noCarsElement.setAttribute("id", "noCarsItem");
+            noCarsElement.innerText = "No cars are parked.";
+            element.appendChild(noCarsElement);
         }
 
         const parkedCars = document.getElementById("parkedCars");
-        if (parkedCars.childNodes.length > 0) parkedCars.removeChild(parkedCars.childNodes[0]);
         parkedCars.appendChild(element);
     });
+}
+
+function createCarList() {
+    let carlist = document.getElementById("carlist");
+    if (carlist) {
+        return carlist;
+    }
+
+    let element = document.createElement("ol");
+    element.setAttribute("id", "carlist");
+    element.className = "list-group list-group-flush";
+
+    const parkedCars = document.getElementById("parkedCars");
+    parkedCars.appendChild(element);
+
+    return element;
+}
+
+function removeNoCarsItem() {
+    const noCarsItem = document.getElementById("noCarsItem");
+    if (noCarsItem) noCarsItem.parentElement.removeChild(noCarsItem);
 }
 
 function getCars() {
@@ -47,8 +80,11 @@ function getCars() {
 function createCar(carObj) {
     const car = carObj.car;
 
+    const animation = "animate fadeInDown one";
+    const style = "list-group-item d-flex w-100 justify-content-between";
+
     const carElement = document.createElement("li");
-    carElement.className = "list-group-item d-flex w-100 justify-content-between";
+    carElement.className = style + " " + animation;
 
     const carIcon = document.createElement("span");
     //carIcon.className = "border border-dark rounded-circle";

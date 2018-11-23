@@ -15,8 +15,9 @@ app.post('/addCar', (req, res) => {
     const licenseNr = req.body.licenseNr || LicensePlate.generateRandomPlateNr();
     const type = req.body.type || 'car';
 
-    parkingHouse.parkCar(new Car(licenseNr, type));
-    res.status(201).send({success: 'true'});
+    const car = parkingHouse.parkCar(new Car(licenseNr, type));
+    console.log(car)
+    res.status(201).send(JSON.stringify(car));
 });
 
 app.get('/parkedCars', (req, res) => {

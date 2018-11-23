@@ -22,12 +22,20 @@ class ParkingHouse {
         if (this.space === 0)
             throw new Error("No more space left in this parking house.");
 
+        const ticket = new Ticket();
         this.parkingSlots.push({
-            ticket: new Ticket(),
+            ticket,
             car
         });
 
         this.space--;
+
+        return {
+            ticket,
+            car,
+            timeSpent: ticket.timeSpent(),
+            cost: ParkingHouse.calculateCost(ticket)
+        };
     }
 
     hasCar(car) {
