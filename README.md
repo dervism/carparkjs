@@ -7,6 +7,8 @@ Example NodeJS/JavaScript (ES2018) project with classes and Jest-tests.
 - Node / NPM (v. 10 or newer)
 - Git
 
+The front-end is written in pure JA
+
 ### Setup:
 
 ```
@@ -15,7 +17,7 @@ $ cd carparkjs
 $ npm install
 ```
 
-### Running the application without user interface:
+### Running the application without frontend:
 
 Run the command in a terminal or command window to start a simulation of a parking house:
 
@@ -36,7 +38,7 @@ Car NW46421 has left the parking house.
 The cost is 51.75387326388889
 ```
 
-### Running the application with a user interface.
+### Running the application with a frontend:
 
 Run the command in a terminal or command window:
 

@@ -21,49 +21,48 @@ function handleForm() {
 }
 
 function addToCarList(car) {
-    console.log(car);
-    let carlist = createCarList();
+    let carList = createCarList();
     removeNoCarsItem();
 
-    if (carlist.childNodes.length > 0) carlist.insertBefore(createCar(car), carlist.childNodes[0]);
-    else carlist.appendChild(createCar(car));
+    if (carList.childNodes.length > 0) carList.insertBefore(createCar(car), carList.childNodes[0]);
+    else carList.appendChild(createCar(car));
 }
 
 function makeCarList() {
-    let element = createCarList();
+    let carList = createCarList();
 
     getCars().then(cars => {
         if (cars.length > 0) {
             cars.reverse().forEach(car => {
-                element.appendChild( createCar(car) )
+                carList.appendChild( createCar(car) )
             });
         } else {
-            element = document.createElement("div");
+            carList = document.createElement("div");
             const noCarsElement = document.createElement("h5");
             noCarsElement.setAttribute("id", "noCarsItem");
             noCarsElement.innerText = "No cars are parked.";
-            element.appendChild(noCarsElement);
+            carList.appendChild(noCarsElement);
         }
 
         const parkedCars = document.getElementById("parkedCars");
-        parkedCars.appendChild(element);
+        parkedCars.appendChild(carList);
     });
 }
 
 function createCarList() {
-    let carlist = document.getElementById("carlist");
-    if (carlist) {
-        return carlist;
+    let carList = document.getElementById("carlist");
+    if (carList) {
+        return carList;
     }
 
-    let element = document.createElement("ol");
-    element.setAttribute("id", "carlist");
-    element.className = "list-group list-group-flush";
+    let newCarList = document.createElement("ol");
+    newCarList.setAttribute("id", "carlist");
+    newCarList.className = "list-group list-group-flush";
 
     const parkedCars = document.getElementById("parkedCars");
-    parkedCars.appendChild(element);
+    parkedCars.appendChild(newCarList);
 
-    return element;
+    return newCarList;
 }
 
 function removeNoCarsItem() {

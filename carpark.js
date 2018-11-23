@@ -16,7 +16,7 @@ app.post('/addCar', (req, res) => {
     const type = req.body.type || 'car';
 
     const car = parkingHouse.parkCar(new Car(licenseNr, type));
-    console.log(car)
+    console.log(car);
     res.status(201).send(JSON.stringify(car));
 });
 
