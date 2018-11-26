@@ -1,82 +1,98 @@
-const Ticket = require('./ticket');
+const Ticket = require('./Ticket');
+const ParkingSlot = require("./ParkingSlot");
+const Car = require("./Car");
+const CarParkOperator = require("./CarParkOperator");
+
+/**
+ * The ParkingHouse class has a list of parked cars.
+ *
+ * It uses a CarParkOperator class to calculate  cost for the parked cars.
+ * If noe operator is set, then a default expensive operator will be created.
+ *
+ * @see CarParkOperator
+ */
 
 class ParkingHouse {
 
-    constructor(space) {
+    constructor(space, operator) {
         this.space = space;
+        this.operator = operator || CarParkOperator.createExpensiveCarPark();
         this.parkingSlots = [];
     }
 
     allCars() {
         return this.parkingSlots.map(slot => {
-            return {
-                ticket: slot.ticket,
-                car: slot.car,
-                timeSpent: slot.ticket.timeSpent(),
-                cost: ParkingHouse.calculateCost(slot.ticket)
-            };
+            // take existing ParkingSlot objects and update them
+            return new ParkingSlot(
+                slot.car,
+                slot.ticket,
+                slot.ticket.timeSpent(),
+                this.operator.calculateCost(slot.ticket));
         });
     }
 
-    parkCar(car) {
+    addCar(car) {
         if (this.space === 0)
-            throw new Error("No more space left in this parking house.");
+            throw new Error(Errors.noMoreSpaceLeft());
 
-        const ticket = new Ticket();
-        this.parkingSlots.push({
-            ticket,
-            car
-        });
+        const parkedCar = new ParkingSlot(car, new Ticket());
 
+        this.parkingSlots.push(parkedCar);
         this.space--;
 
-        return {
-            ticket,
-            car,
-            timeSpent: ticket.timeSpent(),
-            cost: ParkingHouse.calculateCost(ticket)
-        };
+        return parkedCar;
     }
 
-    hasCar(car) {
-        const carIndex = this.slotNumber(car);
+    getCar(carId) {
+        const carIndex = this.slotNumber(carId);
+        if (carIndex === -1) throw Error(Errors.noSuchCar(carId));
+
+        return this.parkingSlots[carIndex];
+    }
+
+    hasCar(carId) {
+        const carIndex = this.slotNumber(carId);
         return carIndex > -1;
     }
 
-    removeCar(car) {
-        let slotNr = this.slotNumber(car);
-        if (slotNr === -1) throw Error("ParkingHouse does not contain this car.");
+    removeCar(carId) {
+        let slotNr = this.slotNumber(carId);
+        if (slotNr === -1) throw Error(Errors.noSuchCar(carId));
 
         let [slot] = this.parkingSlots.splice(slotNr, 1);
-        return ParkingHouse.calculateCost(slot.ticket);
+        this.space++;
+
+        return this.operator.calculateCost(slot.ticket);
     }
 
-    slotNumber(car) {
+    /**
+     * Returns the slot number in the list.
+     * @param carId Can be either a licence plate number, or a Car object.
+     * @returns {number} The index in the list, or -1 if not found.
+     */
+    slotNumber(carId) {
         return this.parkingSlots
             .map(slot => slot.car)
             .findIndex(parkedCar => {
-                if (typeof car === 'object') return parkedCar.licencePlateNr === car.licencePlateNr;
-                if (typeof car === 'string') return parkedCar.licencePlateNr === car;
+                if (typeof carId === 'object') return parkedCar.licencePlateNr === carId.licencePlateNr;
+                if (typeof carId === 'string') return parkedCar.licencePlateNr === carId;
             });
     }
 
     print() {
-
         return this.parkingSlots
             .map(slot => slot.car)
             .forEach(car => console.log(car));
     }
-
-    static calculateCost(ticket) {
-        const ticketTime = ticket.timeSpent();
-
-        // calculate cost
-        return (ticketTime[0] * 50) // days
-            + (ticketTime[1] * 20)  // hours
-            + (ticketTime[2] * 10)  // minutes
-            + (ticketTime[3] * 5);  // seconds
-    }
-
 }
+
+/**
+ * Instead of copying and duplicating the same error messages, we define them just
+ * one time in a separate errors Map and just reuse them where ever needed.
+ */
+const Errors = {
+    noSuchCar: (carId) => "ParkingHouse does not contain the car with license plate ." + Car.getPlateNr(carId),
+    noMoreSpaceLeft: () => "No more space left in this car park."
+};
 
 module.exports = ParkingHouse;
