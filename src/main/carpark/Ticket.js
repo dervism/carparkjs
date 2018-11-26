@@ -1,4 +1,4 @@
-const Dates = require('./dates');
+const Dates = require('./Dates');
 
 class Ticket {
 

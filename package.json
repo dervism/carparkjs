@@ -9,7 +9,7 @@
     "test": "jest --coverage",
     "watch": "jest --watchAll --coverage",
     "uu": "start-server-and-test start-server http://localhost:3000 uu-test",
-    "uu-test": "nav-ally -f ./src/test/carpark/carpark.yml"
+    "uu-test": "nav-ally -f ./src/test/carpark/accessibility/carpark.yml"
   },
   "author": {
     "name": "Dervis Mansuroglu",

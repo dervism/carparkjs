@@ -1,17 +1,23 @@
-const ParkingHouse = require('./src/main/carpark/parkinghouse');
-const Car = require('./src/main/carpark/car');
-const LicensePlate = require('./src/main/carpark/licenseplate');
-const Dates = require('./src/main/carpark/dates');
+const ParkingHouse = require('./src/main/carpark/ParkingHouse');
+const Car = require('./src/main/carpark/Car');
+const LicensePlate = require('./src/main/carpark/LicensePlate');
+const Dates = require('./src/main/carpark/Dates');
+
+/**
+ * This file starts a simulation in console only.
+ * You can run the program with this command in
+ * a terminal/command line window: node main
+ */
 
 function main() {
 
     const phouse = new ParkingHouse(100);
     const car = new Car(LicensePlate.generateRandomPlateNr());
-    phouse.parkCar(car);
+    phouse.addCar(car);
 
-    phouse.parkCar(new Car(LicensePlate.generateRandomPlateNr()));
-    phouse.parkCar(new Car(LicensePlate.generateRandomPlateNr(), 'truck'));
-    phouse.parkCar(new Car(LicensePlate.generateRandomPlateNr(), 'bike'));
+    phouse.addCar(new Car(LicensePlate.generateRandomPlateNr()));
+    phouse.addCar(new Car(LicensePlate.generateRandomPlateNr(), 'truck'));
+    phouse.addCar(new Car(LicensePlate.generateRandomPlateNr(), 'bike'));
 
     console.log("Cars inside the parking house:");
     phouse.print();

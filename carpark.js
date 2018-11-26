@@ -3,17 +3,27 @@ const app = express();
 const bodyParser = require("body-parser");
 const port = 3000;
 
+/**
+ * This file is the main server script that starts
+ * an ExpressJS http server. It will run the CarParkJS
+ * frontend site that is accessible at http://localhost:3000.
+ */
+
+/**
+ * Tells the Express-server were our website source files are.
+ */
 app.use(express.static('site'));
 
 /**
  * This code makes sure that our server converts the received
- * JSON data to JavaScript objects when calling "req.body".
+ * JSON data from the frontend to JavaScript. This will let
+ * us get the data from a POST request.
  */
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 /**
- * Import all the classes we need to use.
+ * Import all the classes we need to use in this file.
  */
 const {Car, ParkingHouse, LicensePlate} = require('./src/main/carpark/index');
 
@@ -34,10 +44,11 @@ app.post('/addCar', (req, res) => {
     const type = req.body.type || 'car';
 
     // create a new Car object, and add it the list (parkingHouse object)
-    const car = parkingHouse.parkCar(new Car(licenseNr, type));
+    const car = parkingHouse.addCar(new Car(licenseNr, type));
     log("New car added to car park:", car);
 
     // respond a "HTTP 201 CREATED" status back to user.
+    // JSON.stringify will convert our object to a String.
     res.status(201).send(JSON.stringify(car));
 });
 
@@ -45,8 +56,16 @@ app.post('/addCar', (req, res) => {
  * Responds a list of all the cars that are registered in
  * this car park.
  */
-app.get('/parkedCars', (req, res) => {
+app.get('/cars', (req, res) => {
     res.status(200).send(JSON.stringify(parkingHouse.allCars()));
+});
+
+app.get('/cars/:licensePlateNr', (req, res) => {
+    if (parkingHouse.hasCar(req.params.licensePlateNr)) {
+        res.status(200).send(JSON.stringify(parkingHouse.getCar(req.params.licensePlateNr)));
+    } else {
+
+    }
 });
 
 /**

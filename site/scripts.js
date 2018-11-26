@@ -71,7 +71,7 @@ function removeNoCarsItem() {
 }
 
 function getCars() {
-    return fetch("/parkedCars").then(result => {
+    return fetch("/cars").then(result => {
         return result.json();
     });
 }
@@ -96,12 +96,13 @@ function createCar(carObj) {
     const carHeader = document.createElement("div");
     carHeader.appendChild(carIcon);
     carHeader.appendChild(carLN);
-
-    const carTime = document.createElement("small");
-    carTime.innerText = "Parked " + Math.round(carObj.timeSpent[3]) + " seconds ago.";
-
     carElement.appendChild(carHeader);
-    carElement.appendChild(carTime);
+
+    if (carObj.timeSpent) {
+        const carTime = document.createElement("small");
+        carTime.innerText = "Parked " + Math.round(carObj.timeSpent[3]) + " seconds ago.";
+        carElement.appendChild(carTime);
+    }
 
     return carElement;
 }
