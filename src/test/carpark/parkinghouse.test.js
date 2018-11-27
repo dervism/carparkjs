@@ -57,24 +57,24 @@ test("parking slot has ticket and cost", () => {
     Dates.sleep("Waiting for %s seconds", 500);
 
     expect(parking.parkingSlots).toHaveLength(2);
-    const car = parking.allCars().pop();
+    const car = parking.allCarsWithCostInfo().pop();
 
-    expect(car).toHaveProperty('timeSpent');
+    expect(car.ticket).toHaveProperty('timeSpent');
     expect(car).toHaveProperty('cost');
 
-    expect(car.timeSpent[3]).toBeGreaterThanOrEqual(0.5);
+    expect(car.ticket.timeSpent()[3]).toBeGreaterThanOrEqual(0.5);
     expect(car.cost).toBeGreaterThanOrEqual(2);
 });
 
 test("a custom cost function for free parking", () => {
-    const parking = new ParkingHouse(3, new CarParkOperator("Free CarPark", (ticket) => {
-        return CarParkOperator.ticketPrice(ticket.timeSpent(), 0, 0, 0, 0);
+    const parking = new ParkingHouse(3, new CarParkOperator("Free CarPark", (slot) => {
+        return CarParkOperator.ticketPrice(slot.ticket.timeSpent(), 0, 0, 0, 0);
     }));
 
     parkCars(parking, 2);
 
     Dates.sleep("Waiting for %s seconds", 500);
-    const car = parking.allCars().pop();
+    const car = parking.allCarsWithCostInfo().pop();
 
     expect(car.cost).toEqual(0);
 });

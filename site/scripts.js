@@ -98,9 +98,9 @@ function createCar(carObj) {
     carHeader.appendChild(carLN);
     carElement.appendChild(carHeader);
 
-    if (carObj.timeSpent) {
+    if (carObj.ticket && carObj.ticket.timeSpent) {
         const carTime = document.createElement("small");
-        carTime.innerText = "Parked " + Math.round(carObj.timeSpent[3]) + " seconds ago.";
+        carTime.innerText = "Parked " + Math.round(carObj.ticket.timeSpent[3]) + "s ago.";
         carElement.appendChild(carTime);
     }
 

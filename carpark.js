@@ -37,7 +37,7 @@ const parkingHouse = new ParkingHouse(1000);
  */
 app.post('/addCar', (req, res) => {
     // log request to server
-    log("New car request received: %s", req.body);
+    log("New car request received: ", req.body);
 
     // extract the info from the request (the info entered by the user)
     const licenseNr = req.body.licenseNr || LicensePlate.generateRandomPlateNr();
@@ -57,8 +57,9 @@ app.post('/addCar', (req, res) => {
  * this car park.
  */
 app.get('/cars', (req, res) => {
-    res.status(200).send(JSON.stringify(parkingHouse.allCars()));
+    res.status(200).send(JSON.stringify(parkingHouse.allCarsWithCostInfo()));
 });
+
 
 app.get('/cars/:licensePlateNr', (req, res) => {
     const licensePlateNr = req.params.licensePlateNr;

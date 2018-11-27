@@ -20,15 +20,8 @@ class ParkingHouse {
         this.parkingSlots = [];
     }
 
-    allCars() {
-        return this.parkingSlots.map(slot => {
-            // take existing ParkingSlot objects and update them
-            return new ParkingSlot(
-                slot.car,
-                slot.ticket,
-                slot.ticket.timeSpent(),
-                this.operator.calculateCost(slot.ticket));
-        });
+    allCarsWithCostInfo() {
+        return this.parkingSlots.map(slot => this.calculateCost(slot));
     }
 
     addCar(car) {
@@ -47,7 +40,7 @@ class ParkingHouse {
         const carIndex = this.slotNumber(carId);
         if (carIndex === -1) throw Error(Errors.noSuchCar(carId));
 
-        return this.parkingSlots[carIndex];
+        return this.calculateCost(this.parkingSlots[carIndex]);
     }
 
     hasCar(carId) {
@@ -62,7 +55,7 @@ class ParkingHouse {
         let [slot] = this.parkingSlots.splice(slotNr, 1);
         this.space++;
 
-        return this.operator.calculateCost(slot.ticket);
+        return this.calculateCost(slot);
     }
 
     /**
@@ -83,6 +76,16 @@ class ParkingHouse {
         return this.parkingSlots
             .map(slot => slot.car)
             .forEach(car => console.log(car));
+    }
+
+    /**
+     * Returns a copy of a slot with cost information added.
+     *
+     * @param slot
+     * @returns {ParkingSlot}
+     */
+    calculateCost(slot) {
+        return slot.withCost(this.operator.calculateCost(slot));
     }
 }
 
