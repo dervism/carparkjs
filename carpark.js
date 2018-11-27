@@ -61,10 +61,11 @@ app.get('/cars', (req, res) => {
 });
 
 app.get('/cars/:licensePlateNr', (req, res) => {
-    if (parkingHouse.hasCar(req.params.licensePlateNr)) {
-        res.status(200).send(JSON.stringify(parkingHouse.getCar(req.params.licensePlateNr)));
+    const licensePlateNr = req.params.licensePlateNr;
+    if (parkingHouse.hasCar(licensePlateNr)) {
+        res.status(200).send(JSON.stringify(parkingHouse.getCar(licensePlateNr)));
     } else {
-
+        res.status(404).json({error: `${licensePlateNr} not found.`});
     }
 });
 
