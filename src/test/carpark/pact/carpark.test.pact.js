@@ -2,16 +2,12 @@
 const Matchers = require('@pact-foundation/pact').Matchers;
 const getCars = require('./mockBackend').getCars;
 
-const EXPECTED_BODY = [
-  {
-    type: 'car1',
-    licenseNr: 'AB12345'
-  },
-  {
-    type: 'car2',
-    licenseNr: 'AB54321'
-  }
-];
+const TEST_CAR = {
+  type: 'car1',
+  licenseNr: 'AB12345'
+};
+
+const EXPECTED_BODY = [ TEST_CAR ];
 
 describe('pact test', () => {
   beforeEach(() => {
@@ -30,7 +26,7 @@ describe('pact test', () => {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: EXPECTED_BODY
+          body: Matchers.eachLike(TEST_CAR)
         }
       }
 
