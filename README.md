@@ -2,6 +2,8 @@
 
 Example NodeJS/JavaScript (ES2018) project with classes and Jest-tests. The frontend is written in pure JavaScript.
 
+The application has a JavaScript-based server backend included in this repo, and additionally a Java-based server [here](https://github.com/dervism/carpark-provider).
+
 ### Requirments:
 
 - Node / NPM (v. 10 or newer)

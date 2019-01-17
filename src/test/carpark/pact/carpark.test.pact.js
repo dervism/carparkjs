@@ -16,7 +16,7 @@ describe('pact test', () => {
         uponReceiving: 'a request for cars',
         withRequest: {
           method: 'GET',
-          path: '/cars',
+          path: '/api/cars',
           headers: {
             'Accept': 'application/json'
           }

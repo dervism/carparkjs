@@ -9,7 +9,7 @@ exports.getCars = (endpoint) => {
   return axios.request({
     method: 'GET',
     baseURL: `${url}:${port}`,
-    url: '/cars',
+    url: '/api/cars',
     headers: { 'Accept': 'application/json' }
   })
 }
@@ -22,7 +22,7 @@ exports.createCar = (endpoint) => {
   return axios.request({
     method: 'POST',
     baseURL: `${url}:${port}`,
-    url: '/cars',
+    url: '/api/cars',
     data: body,
     headers: { 'Accept': 'application/json' }
   })
