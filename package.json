@@ -29,12 +29,12 @@
     "body-parser": "1.18.3",
     "express": "4.16.4",
     "http-server": "0.11.1",
-    "nav-ally": "1.0.8"
+    "nav-ally": "1.2.2"
   },
   "devDependencies": {
-    "@pact-foundation/pact": "^7.2.0",
+    "@pact-foundation/pact": "^8.0.5",
     "axios": "^0.18.0",
-    "jest": "23.6.0",
+    "jest": "24.5.0",
     "start-server-and-test": "1.7.11"
   }
 }
