@@ -9,7 +9,7 @@
     "test": "jest --coverage",
     "watch": "jest --watchAll --coverage",
     "uu": "start-server-and-test start-server http://localhost:3000 uu:test",
-    "uu:test": "nav-ally -f ./src/test/carpark/accessibility/carpark.yml",
+    "uu:test": "nav-ally -r yes -f ./src/test/carpark/accessibility/carpark.yml",
     "pact:test": "jest --runInBand --setupFiles ./src/test/carpark/pact/pactSetup.js --setupTestFrameworkScriptFile ./src/test/carpark/pact/wrapper.js --testRegex \"/*(.test.pact.js)\"",
     "pact:publish": "node ./src/test/carpark/pact/publish.js"
   },
