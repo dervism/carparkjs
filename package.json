@@ -24,6 +24,9 @@
   "jest": {
     "testEnvironment": "node"
   },
+  "config": {
+    "pact_do_not_track": true
+  },
   "license": "MIT",
   "dependencies": {
     "body-parser": "1.19.0",
