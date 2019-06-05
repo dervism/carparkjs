@@ -3,8 +3,8 @@
 const axios = require('axios');
 
 exports.getCars = (endpoint) => {
-  const url = endpoint.url
-  const port = endpoint.port
+  const url = endpoint.url;
+  const port = endpoint.port;
 
   return axios.request({
     method: 'GET',
@@ -12,12 +12,12 @@ exports.getCars = (endpoint) => {
     url: '/api/cars',
     headers: { 'Accept': 'application/json' }
   })
-}
+};
 
 exports.createCar = (endpoint) => {
-  const url = endpoint.url
-  const port = endpoint.port
-  const body = endpoint.body
+  const url = endpoint.url;
+  const port = endpoint.port;
+  const body = endpoint.body;
 
   return axios.request({
     method: 'POST',

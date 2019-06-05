@@ -1,8 +1,9 @@
-const path = require('path')
+const path = require('path');
 const Pact = require('@pact-foundation/pact').Pact;
 
-global.pactMockServerPort = 8991
-global.pactMockServerUrl = 'http://localhost'
+global.pactMockServerPort = 8991;
+global.pactMockServerUrl = 'http://localhost';
+
 global.provider = new Pact({
   port: global.pactMockServerPort,
   log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
@@ -11,4 +12,4 @@ global.provider = new Pact({
   pactfileWriteMode: 'update',
   consumer: 'carpark-consumer',
   provider: 'carpark-provider'
-})
+});

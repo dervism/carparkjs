@@ -9,6 +9,10 @@ const TEST_CAR = {
 
 const EXPECTED_BODY = [ TEST_CAR ];
 
+beforeAll((done) => {
+  provider.setup().then(() => done());
+});
+
 describe('pact test', () => {
   beforeEach(() => {
       const interaction = {
@@ -45,4 +49,9 @@ describe('pact test', () => {
       })
       .then(() => provider.verify())
     })
+});
+
+
+afterAll((done) => {
+  provider.finalize().then(() => done());
 });
