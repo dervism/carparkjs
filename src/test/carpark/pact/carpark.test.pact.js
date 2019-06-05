@@ -16,7 +16,7 @@ beforeAll((done) => {
 describe('pact test', () => {
   beforeEach(() => {
       const interaction = {
-        state: 'i have a list of cars',
+        state: 'I have a list of cars',
         uponReceiving: 'a request for cars',
         withRequest: {
           method: 'GET',
@@ -32,10 +32,10 @@ describe('pact test', () => {
           },
           body: Matchers.eachLike(TEST_CAR)
         }
-      }
+      };
 
       return provider.addInteraction(interaction)
-    })
+    });
 
     it('returns a successful body', () => {
       return getCars({
@@ -43,9 +43,9 @@ describe('pact test', () => {
           port: pactMockServerPort
         })
       .then(response => {
-        expect(response.headers['content-type']).toEqual('application/json')
-        expect(response.data).toEqual(EXPECTED_BODY)
-        expect(response.status).toEqual(200)
+        expect(response.headers['content-type']).toEqual('application/json');
+        expect(response.data).toEqual(EXPECTED_BODY);
+        expect(response.status).toEqual(200);
       })
       .then(() => provider.verify())
     })
