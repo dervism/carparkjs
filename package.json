@@ -18,8 +18,8 @@
     "test": "jest --coverage",
 
     "----- Universell Utforming testing -----": "",
-    "build:uutest": "nav-ally -r yes -f ./src/test/carpark/accessibility/carpark.yml",
-    "start-uutest": "start-server-and-test start-server http://localhost:3000 build:test",
+    "build-uutest": "nav-ally -r yes -f ./src/test/carpark/accessibility/carpark.yml",
+    "start-uutest": "start-server-and-test start http://localhost:3000 build-uutest"
   },
   "repository": {
     "type": "git",
