@@ -9,6 +9,15 @@ The application has a JavaScript-based server backend included in this repo, and
 - Node / NPM (v. 10 or newer)
 - Git
 
+You can install these with HomeBrew (https://brew.sh/):
+
+`brew install npm` and
+`brew install git`
+
+If you want to test run the automatic accessibility tests, then you also need `ChromeDriver`:
+
+`brew install chromedriver`
+
 ### Setup:
 
 ```
@@ -22,10 +31,10 @@ $ npm install
 Run the command in a terminal or command window to start a simulation of a parking house:
 
 ```
-$ node main
+$ npm run start-cli
 ```
 
-will output after 10 seconds:
+will output:
 
 ```
 Cars inside the parking house:
@@ -43,7 +52,7 @@ The cost is 51.75387326388889
 Run the command in a terminal or command window:
 
 ```
-$ node carpark
+$ npm run start
 ```
 
 then go to http://localhost:3000. You will see the following simple interface:
