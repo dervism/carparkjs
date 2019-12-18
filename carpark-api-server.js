@@ -12,7 +12,7 @@ const port = 3000;
 /**
  * Tells the Express-server were our website source files are.
  */
-app.use(express.static('site'));
+app.use(express.static('dist'));
 
 /**
  * This code makes sure that our server converts the received
