@@ -4,12 +4,12 @@
   "description": "Car Park Example",
   "main": "main.js",
   "scripts": {
-    "start-cli": "node main.js",
-    "start-server": "node carpark",
+    "start-cli": "node carpark-console-app.js",
+    "start-server": "node carpark-api-server",
     "test": "jest --coverage",
     "watch": "jest --watchAll --coverage",
     "uu": "start-server-and-test start-server http://localhost:3000 uu:test",
-    "uu:test": "nav-ally -r yes -f ./src/test/carpark/accessibility/carpark.yml",
+    "uu:test": "nav-ally -r yes -f ./src/test/carpark/accessibility/carpark.yml"
   },
   "repository": {
     "type": "git",
