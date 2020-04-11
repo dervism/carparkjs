@@ -5,18 +5,14 @@
   "main": "main.js",
   "scripts": {
     "clean": "rm -rf dist",
-
     "----- Bygge og kjøre som en konsoll-app uten frontend -----": "",
     "build-cli": "npm run clean && parcel build carpark-console-app.js",
     "start-cli": "npm run build-cli && node dist/carpark-console-app.js",
-
     "----- Bygge og kjøre med full frontend -----": "",
     "build": "npm run clean && parcel build site/index.html",
     "start": "npm run build && node carpark-api-server",
-
     "----- Enhetstesting med Jest -----": "",
     "test": "jest --coverage",
-
     "----- Universell Utforming testing -----": "",
     "build-uutest": "nav-ally -r yes -f ./src/test/carpark/accessibility/carpark.yml",
     "start-uutest": "start-server-and-test start http://localhost:3000 build-uutest"
@@ -36,13 +32,13 @@
   "dependencies": {
     "body-parser": "1.19.0",
     "express": "4.17.1",
-    "http-server": "0.12.0",
+    "http-server": "0.12.1",
     "nav-ally": "1.5.1",
     "parcel": "^1.12.4"
   },
   "devDependencies": {
-    "axios": "^0.19.0",
-    "jest": "24.9.0",
-    "start-server-and-test": "1.10.6"
+    "axios": "0.19.0",
+    "jest": "25.3.0",
+    "start-server-and-test": "1.10.11"
   }
 }
