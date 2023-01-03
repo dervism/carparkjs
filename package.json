@@ -34,7 +34,7 @@
     "express": "4.17.1",
     "http-server": "0.12.1",
     "nav-ally": "1.5.1",
-    "parcel": "^1.12.4"
+    "parcel": "^2.8.2"
   },
   "devDependencies": {
     "axios": "0.21.2",
